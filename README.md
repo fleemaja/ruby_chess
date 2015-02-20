@@ -4,8 +4,9 @@ Leverages class inheritance to DRY code by dividing move logic into stepping and
 
 Validates whether a player is in check without modifying the game state by calling a deep duplicate of the board.
 
+![Screen Shot](https://raw.githubusercontent.com/fleemaja/ruby_chess/master/images/chess.png)
 
-To Play:
+#To Play:
 
 Download zip of full project, navigate to the project directory, and type:
 
