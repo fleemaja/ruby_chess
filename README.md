@@ -11,7 +11,7 @@ Validates whether a player is in check without modifying the game state by calli
 
 ##To Play:
 
-Download zip of full project, navigate to the project directory, and type:
+Download the zip of the full project, navigate to the project directory, and type:
 
     ruby game.rb
 
