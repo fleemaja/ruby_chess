@@ -133,6 +133,19 @@ class Board
     end
   end
 
+  def handle_promotions
+    pieces = @rows.flatten.compact.select { |piece| piece.pos[0] == 0 || piece.pos[0] == 7 }
+    pawns = pieces.select { |piece| piece.is_a?(Pawn) }
+    pawns.each do |pawn|
+      pos = pawn.pos
+      color = pawn.color
+      self[pos] = nil
+      self[pos] = Queen.new(color, self, pos)
+    end
+
+    nil
+  end
+
   def valid_pos?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
   end

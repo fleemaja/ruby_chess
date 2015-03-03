@@ -15,6 +15,7 @@ class Game
   def play
     until board.checkmate?(current_player)
       players[current_player].play_turn(board)
+      @board.handle_promotions
       @current_player = (current_player == :white) ? :black : :white
     end
 
