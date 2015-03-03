@@ -1,12 +1,12 @@
 class Piece
   attr_reader :board, :color
-  attr_accessor :pos
+  attr_accessor :pos, :prev_pos, :moved_during_match
 
   def initialize(color, board, pos)
     raise 'invalid color' unless [:white, :black].include?(color)
     raise 'invalid pos' unless board.valid_pos?(pos)
 
-    @color, @board, @pos = color, board, pos
+    @color, @board, @pos, @prev_pos, @moved_during_match = color, board, pos, nil, nil
 
     board.add_piece(self, pos)
   end

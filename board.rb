@@ -72,10 +72,15 @@ class Board
     piece = self[from_pos]
     if piece.color != turn_color
       raise "you cannot move your opponent's piece"
+    end
+
+    return if handle_special_moves(from_pos, to_pos)
+
+
+    if !piece.valid_moves.include?(to_pos)
+      raise 'cannot move into check'
     elsif !piece.moves.include?(to_pos)
       raise 'piece cannot move like that'
-    elsif !piece.valid_moves.include?(to_pos)
-      raise 'cannot move into check'
     end
 
     move_piece!(from_pos, to_pos)
@@ -85,6 +90,9 @@ class Board
   def move_piece!(from_pos, to_pos)
     piece = self[from_pos]
     raise 'piece cannot move like that' unless piece.moves.include?(to_pos)
+
+    piece.prev_pos = from_pos
+    piece.moved_during_match ||= true
 
     self[to_pos] = piece
     self[from_pos] = nil
@@ -159,5 +167,82 @@ class Board
       fill_back_row(color)
       fill_pawns_row(color)
     end
+  end
+
+  def perform_move(from_pos, to_pos, available_moves, piece)
+    return false unless available_moves.include?(to_pos)
+
+    self[to_pos] = piece
+    self[from_pos] = nil
+
+    piece.moved_during_match ||= true
+    piece.pos = to_pos
+    piece.prev_pos = from_pos
+    true
+  end
+
+  def handle_special_moves(from_pos, to_pos)
+    if castle_possible?(from_pos, to_pos)
+      castle(from_pos, to_pos)
+      return true
+    end
+
+    if en_passant_possible?(from_pos, to_pos)
+      en_passant(from_pos, to_pos)
+      return true
+    end
+
+    false
+  end
+
+  def castle(from_pos, to_pos)
+    direction = (to_pos[1] > 3) ? [6, 5] : [1, 2]
+    e_row, e_col = to_pos
+    perform_move(from_pos, [e_row, direction[0]], [[e_row, direction[0]]], self[from_pos]) #King
+    perform_move(to_pos, [e_row, direction[1]], [[e_row, direction[1]]], self[to_pos]) #Rook
+
+    nil
+  end
+
+  def castle_possible?(from_pos, to_pos)
+    from_piece = self[from_pos]
+    to_piece = self[to_pos]
+
+    return false unless from_piece.is_a?(King) && to_piece.is_a?(Rook)
+    return false if from_piece.moved_during_match || to_piece.moved_during_match
+    col_between = ((from_pos[1] + 1)...to_pos[1]).to_a
+    positions = col_between.map { |col| [from_pos[0], col] }
+    return false unless positions.all? { |pos| self[pos].nil? }
+
+    true
+  end
+
+  def en_passant(from_pos, to_pos)
+    e_row, e_col = to_pos
+    direction = self[from_pos].color == :white ? -1 : 1
+
+    perform_move(from_pos, [e_row + direction, e_col], [[e_row + direction, e_col]], self[from_pos])
+    self[to_pos] = nil
+
+    nil
+  end
+
+  def en_passant_possible?(from_pos, to_pos)
+    from_piece = self[from_pos]
+    to_piece = self[to_pos]
+
+    s_row, s_col = from_pos
+    e_row, e_col = to_pos
+
+    direction = self[from_pos].color == :white ? -1 : 1
+
+    return false unless from_piece.is_a?(Pawn) && to_piece.is_a?(Pawn)
+    return false unless from_piece.color != to_piece.color
+    return false unless s_row == e_row
+    return false unless (e_col - s_col).abs == 1
+    return false unless (to_piece.prev_pos[0] - to_piece.pos[0]).abs == 2
+    return false unless self[[e_row + direction, e_col]].nil?
+
+    true
   end
 end
