@@ -5,7 +5,7 @@ Leverages class inheritance to DRY code by dividing move logic into stepping and
 
 Validates whether a player is in check without modifying the game state by calling a deep duplicate of the board.
 
-Can perform advanced movements like castling, en passant, and pawn promotion.
+Includes advanced movements like castling, en passant, and pawn promotion.
 
 ##Screen Shot
 
@@ -13,7 +13,7 @@ Can perform advanced movements like castling, en passant, and pawn promotion.
 
 ##To Play:
 
-Download the zip of the full project, navigate to the project directory, and type:
++ Download the zip of the full project, navigate to the project directory, and type:
 
     ruby game.rb
 
@@ -21,13 +21,13 @@ to play.
 
 
 
-Please note Ruby Chess relies on the colorize gem in order to work. Ensure this gem is installed before running.
++ Please note Ruby Chess relies on the colorize gem in order to work. Ensure this gem is installed before running.
 
 to install the colorize gem:
 
     gem install colorize
 
 
-To castle select the king as your "from position" and the rook as your "to position".
++ To castle select the king as your "from position" and the rook as your "to position".
 
-For en passant choose your pawn as your "from position" and the opponent's pawn as your "to position".
++ For en passant choose your pawn as your "from position" and the opponent's pawn as your "to position".
