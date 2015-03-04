@@ -25,6 +25,6 @@ to play.
 
 + Please note Ruby Chess relies on the colorize gem in order to work. Ensure this gem is installed before running.
 
-+ To install the colorize gem:
+To install the colorize gem:
 
     gem install colorize
