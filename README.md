@@ -15,11 +15,10 @@ Chess game that is 100% Ruby and played in the terminal.
 
 ##To Play:
 
-Download the zip of the full project, navigate to the project directory, and type:
+Download the zip of the full project, navigate to the project directory, and type the following to play:
 
     ruby game.rb
 
-to play.
 
 Please note that Ruby Chess relies on the colorize gem in order to work. Ensure that this gem is installed before running.
 
