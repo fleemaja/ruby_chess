@@ -1,11 +1,13 @@
 # Ruby OOP Chess
 Chess game that is 100% Ruby and played in the terminal.
 
-Leverages class inheritance to DRY code by dividing move logic into stepping and sliding pieces.
+### Features
 
-Validates whether a player is in check without modifying the game state by calling a deep duplicate of the board.
++ Leverages class inheritance to DRY code by dividing move logic into stepping and sliding pieces.
 
-Includes advanced movements like castling, en passant, and pawn promotion.
++ Validates whether a player is in check without modifying the game state by calling a deep duplicate of the board.
+
++ Includes advanced movements like castling, en passant, and pawn promotion.
 
 ##Screen Shot
 
@@ -19,7 +21,7 @@ Download the zip of the full project, navigate to the project directory, and typ
 
 to play.
 
-+ Please note that Ruby Chess relies on the colorize gem in order to work. Ensure that this gem is installed before running.
+Please note that Ruby Chess relies on the colorize gem in order to work. Ensure that this gem is installed before running.
 
 To install the colorize gem:
 
