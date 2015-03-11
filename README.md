@@ -26,6 +26,8 @@ To install the colorize gem:
 
     gem install colorize
 
+### Advanced Movements
+
 + To castle select the king as your "from position" and the rook as your "to position".
 
 + For en passant choose your pawn as your "from position" and the opponent's pawn as your "to position".
