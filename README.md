@@ -19,12 +19,12 @@ Download the zip of the full project, navigate to the project directory, and typ
 
 to play.
 
-+ To castle select the king as your "from position" and the rook as your "to position".
-
-+ For en passant choose your pawn as your "from position" and the opponent's pawn as your "to position".
-
-+ Please note Ruby Chess relies on the colorize gem in order to work. Ensure this gem is installed before running.
++ Please note that Ruby Chess relies on the colorize gem in order to work. Ensure that this gem is installed before running.
 
 To install the colorize gem:
 
     gem install colorize
+
++ To castle select the king as your "from position" and the rook as your "to position".
+
++ For en passant choose your pawn as your "from position" and the opponent's pawn as your "to position".
